@@ -3,7 +3,7 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { families, type Ideology, type Family } from './types';
 import { Plus, Minus, RotateCcw, Maximize2, Compass, Layers3, Info } from 'lucide-react';
-import {MIN_MAP_DISTANCE,MAX_MAP_DISTANCE,nextZoomDistance,placeHoverCard} from './mapInteraction';
+import {MIN_MAP_DISTANCE,MAX_MAP_DISTANCE,nextZoomDistance,placeHoverCard,mapDetailTarget,advanceMapDetail} from './mapInteraction';
 
 type Props={items:Ideology[];selected?:Ideology;onSelect:(id:string)=>void;onCatalog:()=>void;mode:'3d'|'2d';setMode:(s:'3d'|'2d')=>void;reduced:boolean};
 export default function Atlas({items,selected,onSelect,onCatalog,mode,setMode,reduced}:Props){
@@ -60,14 +60,14 @@ export default function Atlas({items,selected,onSelect,onCatalog,mode,setMode,re
   if(mode==='3d'){axis([0,0,11.3],0x8e9fbd,'ПРОГРЕСС');axis([0,0,-11.3],0x8e9fbd,'ТРАДИЦИЯ');}
   const texCanvas=document.createElement('canvas');texCanvas.width=64;texCanvas.height=64;
   const ctx=texCanvas.getContext('2d')!;const gradient=ctx.createRadialGradient(32,32,0,32,32,32);gradient.addColorStop(0,'rgba(255,255,255,1)');gradient.addColorStop(.15,'rgba(255,255,255,1)');gradient.addColorStop(.3,'rgba(255,255,255,.45)');gradient.addColorStop(1,'rgba(255,255,255,0)');ctx.fillStyle=gradient;ctx.fillRect(0,0,64,64);const texture=new THREE.CanvasTexture(texCanvas);
-  const nodes:{sprite:THREE.Sprite;el:HTMLButtonElement;data?:Ideology;family?:Family}[]=[];
+  const nodes:{sprite:THREE.Sprite;el:HTMLButtonElement;targetPosition:THREE.Vector3;clusterPosition:THREE.Vector3;labelOpacity:number;data?:Ideology;family?:Family}[]=[];
   const createNode=(position:THREE.Vector3,color:string,text:string,data?:Ideology,family?:Family)=>{
    const material=new THREE.SpriteMaterial({map:texture,color,transparent:true,depthWrite:false});materials.push(material);
    const sprite=new THREE.Sprite(material);sprite.position.copy(position);sprite.scale.setScalar(data?0.85:1.4);sprite.userData={id:data?.id,family};scene.add(sprite);
    const el=document.createElement('button');el.className='map-label';el.textContent=text;el.style.setProperty('--dot',color);el.tabIndex=-1;
    if(data)el.dataset.ideologyId=data.id;
    el.onclick=()=>{if(data)selectRef.current(data.id);else zoomTo(position,29)};
-   labelRoot.appendChild(el);nodes.push({sprite,el,data,family});
+   labelRoot.appendChild(el);nodes.push({sprite,el,data,family,targetPosition:position.clone(),clusterPosition:position.clone(),labelOpacity:0});
   };
   const mapped=items.filter(d=>d.coords);
   mapped.forEach(d=>createNode(new THREE.Vector3(d.coords![0],d.coords![1],mode==='2d'?0:d.coords![2]),families[d.family].color,d.name,d));
@@ -75,11 +75,13 @@ export default function Atlas({items,selected,onSelect,onCatalog,mode,setMode,re
    const group=mapped.filter(d=>d.family===f);if(!group.length)return;
    const center=group.reduce((v,d)=>v.add(new THREE.Vector3(d.coords![0],d.coords![1],mode==='2d'?0:d.coords![2])),new THREE.Vector3()).divideScalar(group.length);
    createNode(center,families[f].color,`${families[f].short} · ${group.length}`,undefined,f);
+   nodes.filter(n=>n.data?.family===f).forEach(n=>n.clusterPosition.copy(center));
   });
   const ringG=new THREE.RingGeometry(.38,.43,48);geometries.push(ringG);const ringM=new THREE.MeshBasicMaterial({color:0xe2edff,side:THREE.DoubleSide,transparent:true,opacity:0.9,depthTest:false});materials.push(ringM);const ring=new THREE.Mesh(ringG,ringM);scene.add(ring);
   let frame=0,alive=true,width=1,height=1,lastCluster=false,baseDistance=46,firstSize=true;
   let desiredTarget:THREE.Vector3|null=null,desiredPosition:THREE.Vector3|null=null;
   let desiredDistance:number|null=null,zoomAnchor:THREE.Vector3|null=null;
+  let detailLevel=1;
   let lastFrame=performance.now(),hoverId:string|null=null,hoverTimer:ReturnType<typeof setTimeout>|undefined;
   const cursor={x:0,y:0};
   const itemById=new Map(items.map(d=>[d.id,d]));
@@ -109,7 +111,7 @@ export default function Atlas({items,selected,onSelect,onCatalog,mode,setMode,re
   const ray=new THREE.Raycaster();const pointer=new THREE.Vector2();let start=[0,0];
   const pick=(e:PointerEvent)=>{
    const rect=renderer.domElement.getBoundingClientRect();pointer.set((e.clientX-rect.left)/width*2-1,-(e.clientY-rect.top)/height*2+1);ray.setFromCamera(pointer,camera);
-   return ray.intersectObjects(nodes.filter(n=>n.sprite.visible).map(n=>n.sprite))[0]?.object;
+   return ray.intersectObjects(nodes.filter(n=>n.sprite.visible&&n.sprite.material.opacity>.5).map(n=>n.sprite))[0]?.object;
   };
   const down=(e:PointerEvent)=>{start=[e.clientX,e.clientY];hideTooltip()};
   const up=(e:PointerEvent)=>{if(Math.hypot(start[0]-e.clientX,start[1]-e.clientY)>5)return;const hit=pick(e);if(hit?.userData.id)selectRef.current(hit.userData.id);else if(hit?.userData.family)zoomTo(hit.position,29)};
@@ -137,7 +139,7 @@ export default function Atlas({items,selected,onSelect,onCatalog,mode,setMode,re
   function render(now=performance.now()){
    if(!alive)return;
    const dt=Math.min(.05,Math.max(0,(now-lastFrame)/1000));lastFrame=now;
-   const speed=reduced?1:1-Math.exp(-dt/.13);
+   const speed=reduced?1:1-Math.exp(-dt/.22);
    if(desiredTarget&&desiredPosition){controls.target.lerp(desiredTarget,speed);camera.position.lerp(desiredPosition,speed);if(camera.position.distanceTo(desiredPosition)<.008){camera.position.copy(desiredPosition);controls.target.copy(desiredTarget);desiredPosition=null;desiredTarget=null}}
    if(desiredDistance!==null){
     const offset=camera.position.clone().sub(controls.target),distance=offset.length(),next=THREE.MathUtils.lerp(distance,desiredDistance,speed);
@@ -146,25 +148,38 @@ export default function Atlas({items,selected,onSelect,onCatalog,mode,setMode,re
     if(Math.abs(next-desiredDistance)<.006){desiredDistance=null;zoomAnchor=null}
    }
    controls.update();
-   const distance=camera.position.distanceTo(controls.target);const clustered=distance>baseDistance*1.33;
+   const distance=camera.position.distanceTo(controls.target);
+   detailLevel=advanceMapDetail(detailLevel,mapDetailTarget(distance/baseDistance),dt,reduced);
+   const detailOpacity=THREE.MathUtils.smoothstep(detailLevel,.12,.78);
+   const familyOpacity=1-THREE.MathUtils.smoothstep(detailLevel,.25,.85);
+   const separation=THREE.MathUtils.smootherstep(detailLevel,0,1);
+   const clustered=detailLevel<.5;
    if(clustered!==lastCluster){lastCluster=clustered;setClustered(clustered)}
    const occupied:{x:number;y:number;w:number}[]=[];
    const selectedId=selectedRef.current?.id;
-   const sorted=[...nodes].sort((a,b)=>Number(b.data?.id===selectedId)-Number(a.data?.id===selectedId));
+   const priority=(n:typeof nodes[number])=>n.data?.id===selectedId?3:n.family&&detailLevel<.55?2:1;
+   const sorted=[...nodes].sort((a,b)=>priority(b)-priority(a));
    let count=0;const limit=distance<baseDistance*.65?24:14;
    sorted.forEach(n=>{
-    const active=clustered?!!n.family:!!n.data;n.sprite.visible=active;
+    const opacity=n.family?familyOpacity:detailOpacity;
+    if(n.data)n.sprite.position.lerpVectors(n.clusterPosition,n.targetPosition,separation);
+    n.sprite.material.opacity=opacity;n.sprite.visible=opacity>.005;
+    const active=opacity>.01;
     const p=position(n.sprite.position);const isSelected=n.data?.id===selectedId;
-    n.sprite.scale.setScalar(n.family?1.6:isSelected?1.15:.75);
+    n.sprite.scale.setScalar(n.family?1.6-.35*detailLevel:(isSelected?1.15:.75)*THREE.MathUtils.lerp(.35,1,separation));
     const w=Math.min(190,n.el.textContent!.length*6.3+18);
     const inView=p.z<1&&p.z>-1&&p.x>12&&p.x<width-w-12&&p.y>25&&p.y<height-40;
     const clear=!occupied.some(r=>Math.abs(r.y-p.y)<26&&p.x<r.x+r.w+12&&p.x+w>r.x-12);
-    const visible=active&&inView&&(isSelected||clear)&&(count<limit||isSelected||clustered);
-    n.el.style.display=visible?'block':'none';n.el.classList.toggle('selected',isSelected);
-    if(visible){n.el.style.transform=`translate(${p.x+9}px,${p.y-11}px)`;occupied.push({x:p.x,y:p.y,w});count++}
+    const eligible=n.family?familyOpacity>.08:detailLevel>.35&&detailOpacity>.08;
+    const visible=active&&eligible&&inView&&(isSelected||clear)&&(count<limit||isSelected||!!n.family);
+    const targetOpacity=visible?opacity:0;
+    n.labelOpacity=reduced?targetOpacity:THREE.MathUtils.lerp(n.labelOpacity,targetOpacity,1-Math.exp(-dt/.11));
+    n.el.style.display=n.labelOpacity>.005?'block':'none';n.el.style.opacity=String(n.labelOpacity);n.el.style.pointerEvents=n.labelOpacity>.5?'auto':'none';n.el.setAttribute('aria-hidden',n.labelOpacity>.5?'false':'true');n.el.classList.toggle('selected',isSelected);
+    if(n.labelOpacity>.005)n.el.style.transform=`translate(${p.x+9}px,${p.y-11}px)`;
+    if(visible){occupied.push({x:p.x,y:p.y,w});count++}
    });
    axisLabels.forEach(a=>{const p=position(a.position);a.el.style.display=p.z<1&&p.x>5&&p.x<width-5&&p.y>15&&p.y<height-15?'block':'none';a.el.style.transform=`translate(${p.x}px,${p.y}px) translate(-50%,-50%)`});
-   const sel=nodes.find(n=>n.data?.id===selectedId);ring.visible=!!sel&&!clustered;if(sel){ring.position.copy(sel.sprite.position);ring.quaternion.copy(camera.quaternion)}
+   const sel=nodes.find(n=>n.data?.id===selectedId);ring.visible=!!sel&&detailOpacity>.005;ringM.opacity=.9*detailOpacity;if(sel){ring.position.copy(sel.sprite.position);ring.quaternion.copy(camera.quaternion)}
    renderer.render(scene,camera);frame=requestAnimationFrame(render);
   }render();
   const lost=(e:Event)=>{e.preventDefault();setFailed(true)};renderer.domElement.addEventListener('webglcontextlost',lost);
