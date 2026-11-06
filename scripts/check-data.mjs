@@ -1,9 +1,11 @@
 import fs from 'node:fs';
 import assert from 'node:assert/strict';
+import {createHash} from 'node:crypto';
 const data=JSON.parse(fs.readFileSync(new URL('../src/catalog.json',import.meta.url),'utf8'));
 assert(data.length>0,'Catalog must not be empty');
 const ids=new Set(data.map(d=>d.id));assert.equal(ids.size,data.length,'Duplicate IDs');
 const families=['liberal','socialist','anarchist','conservative','national','religious','ecological','regional'];
+const imageHashes=new Map(),imageSources=new Map();
 for(const d of data){
  assert(/^[a-z0-9-]+$/.test(d.id),d.id+' invalid slug');
  for(const key of ['name','english','summary','history','critique','placement','kind','era','checked'])assert(typeof d[key]==='string'&&d[key].length>0,`${d.id}: missing ${key}`);
@@ -15,6 +17,16 @@ for(const d of data){
  assert(d.uncertainty>=0&&d.uncertainty<=10,`${d.id}: invalid range`);
  d.related.forEach(id=>assert(ids.has(id),`${d.id}: broken related ${id}`));
  d.sources.forEach(s=>{assert(s.title.length>3);assert(new URL(s.url).protocol==='https:',`${d.id}: non-HTTPS source`)});
- if(d.image){assert(fs.existsSync(new URL('../public/'+d.image.src,import.meta.url)),`${d.id}: missing image`);assert(d.image.caption&&d.image.author&&d.image.license&&d.image.source,`${d.id}: incomplete attribution`)}
+ if(d.image){
+  const file=new URL('../public/'+d.image.src,import.meta.url);
+  assert(fs.existsSync(file),`${d.id}: missing image`);
+  assert(d.image.caption&&d.image.author&&d.image.license&&d.image.source,`${d.id}: incomplete attribution`);
+  assert(!d.image.contextual,`${d.id}: shared family placeholder is forbidden`);
+  const hash=createHash('sha256').update(fs.readFileSync(file)).digest('hex');
+  const source=decodeURIComponent(d.image.source).replace(/ /g,'_').split('?')[0].toLowerCase();
+  assert(!imageHashes.has(hash),`${d.id}: duplicate image content, already used by ${imageHashes.get(hash)}`);
+  assert(!imageSources.has(source),`${d.id}: duplicate image source, already used by ${imageSources.get(source)}`);
+  imageHashes.set(hash,d.id);imageSources.set(source,d.id);
+ }
 }
-console.log(`PASS: ${data.length} articles, ${data.filter(d=>d.coords).length} mapped, ${data.filter(d=>d.image).length} illustrated; schemas, links, coordinates and local assets valid.`);
+console.log(`PASS: ${data.length} articles, ${data.filter(d=>d.coords).length} mapped, ${data.filter(d=>d.image).length} unique images, 0 duplicate files/sources; schemas, links, coordinates and local assets valid.`);
