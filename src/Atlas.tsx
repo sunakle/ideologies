@@ -11,14 +11,13 @@ export default function Atlas({items,selected,onSelect,onCatalog,mode,setMode,re
  const labels=useRef<HTMLDivElement>(null);
  const tooltip=useRef<HTMLDivElement>(null);
  const updateTooltip=useRef<(()=>void)|null>(null);
- const api=useRef<{zoom:(n:number)=>void;reset:()=>void;front:()=>void;focus:(d:Ideology)=>void}|null>(null);
+ const api=useRef<{zoom:(n:number)=>void;reset:()=>void;front:()=>void}|null>(null);
  const [failed,setFailed]=useState(false);
  const [clustered,setClustered]=useState(false);
  const [help,setHelp]=useState(false);
  const [hover,setHover]=useState<Ideology|null>(null);
  const [hoverOpen,setHoverOpen]=useState(false);
  const selectedRef=useRef(selected);selectedRef.current=selected;
- const lastSelected=useRef(selected?.id);
  const selectRef=useRef(onSelect);selectRef.current=onSelect;
  useEffect(()=>{
   if(!host.current||!labels.current)return;
@@ -105,9 +104,18 @@ export default function Atlas({items,selected,onSelect,onCatalog,mode,setMode,re
    desiredDistance=null;zoomAnchor=null;hideTooltip();
    const direction=camera.position.clone().sub(controls.target).normalize();desiredTarget=target.clone();desiredPosition=target.clone().add(direction.multiplyScalar(distance));
   }
-  api.current={zoom(n){desiredTarget=null;desiredPosition=null;zoomAnchor=null;hideTooltip();desiredDistance=THREE.MathUtils.clamp((desiredDistance??camera.position.distanceTo(controls.target))*n,MIN_MAP_DISTANCE,MAX_MAP_DISTANCE)},reset(){desiredDistance=null;zoomAnchor=null;hideTooltip();desiredTarget=new THREE.Vector3();desiredPosition=(mode==='2d'?new THREE.Vector3(0,0,1):new THREE.Vector3(25,19,29).normalize()).multiplyScalar(baseDistance)},front(){desiredDistance=null;zoomAnchor=null;hideTooltip();desiredTarget=new THREE.Vector3();desiredPosition=new THREE.Vector3(0,0,baseDistance)},focus(d){if(d.coords)zoomTo(new THREE.Vector3(d.coords[0]*.25,d.coords[1]*.25,mode==='2d'?0:d.coords[2]*.25),baseDistance*.87)}};
+  api.current={zoom(n){desiredTarget=null;desiredPosition=null;zoomAnchor=null;hideTooltip();desiredDistance=THREE.MathUtils.clamp((desiredDistance??camera.position.distanceTo(controls.target))*n,MIN_MAP_DISTANCE,MAX_MAP_DISTANCE)},reset(){desiredDistance=null;zoomAnchor=null;hideTooltip();desiredTarget=new THREE.Vector3();desiredPosition=(mode==='2d'?new THREE.Vector3(0,0,1):new THREE.Vector3(25,19,29).normalize()).multiplyScalar(baseDistance)},front(){desiredDistance=null;zoomAnchor=null;hideTooltip();desiredTarget=new THREE.Vector3();desiredPosition=new THREE.Vector3(0,0,baseDistance)}};
   controls.addEventListener('start',()=>{desiredTarget=null;desiredPosition=null;desiredDistance=null;zoomAnchor=null;hideTooltip()});
-  const resize=new ResizeObserver(()=>{width=container.clientWidth;height=container.clientHeight;renderer.setSize(width,height);camera.aspect=width/Math.max(1,height);baseDistance=Math.max(43,34/camera.aspect);if(firstSize){camera.position.normalize().multiplyScalar(baseDistance);firstSize=false}camera.updateProjectionMatrix()});resize.observe(container);
+  const resize=new ResizeObserver(()=>{
+   const nextWidth=container.clientWidth,nextHeight=container.clientHeight;
+   if(nextWidth===width&&nextHeight===height)return;
+   width=nextWidth;height=nextHeight;renderer.setSize(width,height);
+   camera.aspect=width/Math.max(1,height);baseDistance=Math.max(43,34/camera.aspect);
+   if(firstSize){camera.position.normalize().multiplyScalar(baseDistance);firstSize=false}
+   camera.updateProjectionMatrix();
+   // Resizing clears a WebGL canvas: redraw before the browser can paint it.
+   renderer.render(scene,camera);
+  });resize.observe(container);
   const ray=new THREE.Raycaster();const pointer=new THREE.Vector2();let start=[0,0];
   const pick=(e:PointerEvent)=>{
    const rect=renderer.domElement.getBoundingClientRect();pointer.set((e.clientX-rect.left)/width*2-1,-(e.clientY-rect.top)/height*2+1);ray.setFromCamera(pointer,camera);
@@ -185,7 +193,6 @@ export default function Atlas({items,selected,onSelect,onCatalog,mode,setMode,re
   const lost=(e:Event)=>{e.preventDefault();setFailed(true)};renderer.domElement.addEventListener('webglcontextlost',lost);
   return()=>{alive=false;clearTimeout(hoverTimer);cancelAnimationFrame(frame);resize.disconnect();stage.removeEventListener('pointermove',move);stage.removeEventListener('pointerleave',hideTooltip);stage.removeEventListener('wheel',wheel,true);window.removeEventListener('scroll',hideTooltip);controls.dispose();geometries.forEach(g=>g.dispose());materials.forEach(m=>m.dispose());texture.dispose();scene.traverse(o=>{if(o instanceof THREE.ArrowHelper){o.line.geometry.dispose();o.cone.geometry.dispose()}});renderer.dispose();renderer.domElement.remove();labelRoot.replaceChildren();api.current=null;updateTooltip.current=null};
  },[items,mode,reduced]);
- useEffect(()=>{if(selected&&lastSelected.current!==selected.id)api.current?.focus(selected);lastSelected.current=selected?.id},[selected?.id]);
  useLayoutEffect(()=>{updateTooltip.current?.()},[hover]);
  return <div className="atlas-stage">
   <div className="stage-top"><span><span className="live-dot"/> {clustered?'СЕМЕЙСТВА ИДЕОЛОГИЙ':'ПРОСТРАНСТВО ИДЕЙ'}</span><div className="segmented"><button aria-pressed={mode==='3d'} onClick={()=>setMode('3d')}><Layers3 size={13}/>3D</button><button aria-pressed={mode==='2d'} onClick={()=>setMode('2d')}>2D</button></div></div>
