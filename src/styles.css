@@ -7,5 +7,6 @@
 @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
 
 .portrait figcaption a{display:inline-block;font-size:7px;margin-left:6px;text-decoration:underline;color:#d5e2c7}.portrait.large img{object-fit:contain;filter:none}.portrait.large figcaption{position:relative;background:#1c2416;padding:12px;display:block}.portrait.large{height:auto;min-height:200px}.portrait.large img{height:300px;display:block}.portrait.large figcaption a{font-size:9px}.portrait:has(img[src$=".svg"]) img{filter:none;object-fit:contain}.preview-card .portrait figcaption{display:block;max-height:58px}.article-aside .portrait.large{height:auto}
+.contextual-badge{position:absolute;z-index:2;top:8px;left:8px;padding:4px 7px;border:1px solid #d2eea755;border-radius:3px;background:#11180ddd;color:#d2eea7;font-size:7px;letter-spacing:.7px;text-transform:uppercase}.portrait.large .contextual-badge{font-size:8px;top:10px;left:10px}
 
 .compact-author{display:block;font-size:7px;line-height:1.3;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.portrait.large .compact-author{white-space:normal;font-size:9px;margin-top:8px}.preview-card .portrait figcaption{max-height:76px}.page-intro>div{min-width:0}
