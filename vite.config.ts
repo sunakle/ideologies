@@ -1,0 +1,2 @@
+import { defineConfig } from 'vite';
+export default defineConfig({base:'./',build:{chunkSizeWarningLimit:750,rollupOptions:{output:{manualChunks:{three:['three'],react:['react','react-dom']}}}}});
