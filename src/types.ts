@@ -1,6 +1,6 @@
 export type Family = 'liberal'|'socialist'|'anarchist'|'conservative'|'national'|'religious'|'ecological'|'regional';
 export interface Source {title:string;url:string}
-export interface HistoricalImage {src:string;caption:string;author:string;license:string;licenseUrl?:string;changes?:string;source:string;url?:string;contextual?:boolean}
+export interface HistoricalImage {src:string;caption:string;author:string;license:string;licenseUrl?:string;changes?:string;source:string;url?:string;contextual?:boolean;representative?:boolean}
 export interface Ideology {id:string;name:string;english:string;aliases:string[];family:Family;kind:string;year:number;era:string;regions:string[];summary:string;ideas:string[];history:string;critique:string;people:string[];variants:string[];related:string[];coords:[number,number,number]|null;uncertainty:number;placement:string;sources:Source[];checked:string;image?:HistoricalImage}
 export const families:Record<Family,{name:string;color:string;short:string}> = {
  liberal:{name:'Либеральные',short:'Либерализм',color:'#dfc86d'},

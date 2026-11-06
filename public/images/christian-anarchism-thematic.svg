@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="750" height="500" viewBox="0 0 450 300" xmlns:xlink="http://www.w3.org/1999/xlink">
+<defs>
+<clipPath id="clip1"><path id="Tring" d="M0,300V0H450Z"/></clipPath>
+<path id="Cross" transform="translate(11.5075,-7.6717)" d="M129.942,135.624H194.148V278.483H232.836V135.624H297.044V94.2203H232.836V38.5824H194.148V94.2203H129.942Z"/>
+</defs>
+<rect width="450" height="300"/>
+<use xlink:href="#Tring" style="fill:#ff0000"/>
+<use xlink:href="#Cross" style="fill:#ff0000"/>
+<g clip-path="url(#clip1)"><use xlink:href="#Cross"/></g></svg>

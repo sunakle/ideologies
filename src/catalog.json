@@ -1079,15 +1079,15 @@
     ],
     "checked": "2026-11-06",
     "image": {
-      "src": "images/peter-kropotkin.jpg",
-      "caption": "Пётр Кропоткин, около 1890 года. Один из теоретиков анархического коммунизма.",
-      "author": "Автор неизвестен",
-      "license": "Public domain",
-      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-      "source": "https://commons.wikimedia.org/wiki/File:Kropotkin_Portrait.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Kropotkin_Portrait.jpg/960px-Kropotkin_Portrait.jpg",
-      "changes": "Без изменений; для страницы используется уменьшенная копия Wikimedia Commons.",
-      "verified": "2026-11-06"
+      "src": "images/anarcho-communism-thematic.svg",
+      "caption": "Неофициальный красно-чёрный флаг анархо-коммунизма.",
+      "author": "KordeX",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Anarchist_communism.svg",
+      "changes": "Масштабирование и кадрирование для интерфейса.",
+      "verified": "2026-11-06",
+      "representative": true
     }
   },
   {
@@ -1150,16 +1150,15 @@
     ],
     "checked": "2026-11-06",
     "image": {
-      "src": "images/peter-kropotkin.jpg",
-      "caption": "Контекстная историческая иллюстрация семейства «anarchist». Она не является эмблемой направления «Анархо-синдикализм» и используется до добавления отдельного проверенного изображения.",
-      "author": "Автор неизвестен",
+      "src": "images/anarcho-syndicalism-thematic.svg",
+      "caption": "Красно-чёрный флаг, исторически связанный с анархо-синдикализмом.",
+      "author": "Автор не указан",
       "license": "Public domain",
       "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-      "source": "https://commons.wikimedia.org/wiki/File:Kropotkin_Portrait.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Kropotkin_Portrait.jpg/960px-Kropotkin_Portrait.jpg",
-      "changes": "Повторно использована как явно подписанная контекстная иллюстрация; масштабирование и кадрирование.",
+      "source": "https://commons.wikimedia.org/wiki/File:Anarchist_flag_2.svg",
+      "changes": "Масштабирование и кадрирование для интерфейса.",
       "verified": "2026-11-06",
-      "contextual": true
+      "representative": true
     }
   },
   {
@@ -1219,14 +1218,15 @@
     ],
     "checked": "2026-11-06",
     "image": {
-      "src": "images/mutualism.jpg",
-      "caption": "Hubungan yang menguntungkan atau Simbiosis mutualisme antara Jalak Putih Punggung-abu dengan Rusa Jawa di Taman Nasional Baluran, Situbondo, Jawa Timur. Jalak yang berstatus kritis (Critically endangered) akan memakan kutu atau serangga yang hinggap di badan Rusa, sehingga si Rusa tak lagi terganggu dengan gatal akibat kutu yang suka menghisap darah…",
-      "author": "Waskito kw",
-      "license": "CC BY-SA 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Jalak_Putih_Punggung-abu_dan_Rusa_Jawa.jpg",
+      "src": "images/mutualism-thematic.svg",
+      "caption": "Неофициальный оранжево-чёрный флаг мютюэлизма с символом.",
+      "author": "Opensofias",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Mutualist_flag_with_symbol.svg",
       "changes": "Масштабирование и кадрирование для интерфейса.",
-      "verified": "2026-11-06"
+      "verified": "2026-11-06",
+      "representative": true
     }
   },
   {
@@ -1286,14 +1286,15 @@
     ],
     "checked": "2026-11-06",
     "image": {
-      "src": "images/anarcho-capitalism-page.jpg",
-      "caption": "Russian libertarian politician Mikhail Svetov at the interview by the Volgograd chapter of Alexei Navalny 's organization",
-      "author": "YouTube channel \" Штаб Навального в Волгограде \"",
-      "license": "CC BY 3.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/3.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Mikhail_Svetov_in_Volgograd,_November_2018.jpg",
+      "src": "images/anarcho-capitalism-thematic.svg",
+      "caption": "Чёрно-золотой флаг анархо-капитализма.",
+      "author": "Rocket000",
+      "license": "Public domain",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Flag_of_Anarcho-capitalism.svg",
       "changes": "Масштабирование и кадрирование для интерфейса.",
-      "verified": "2026-11-06"
+      "verified": "2026-11-06",
+      "representative": true
     }
   },
   {
@@ -1419,14 +1420,15 @@
     ],
     "checked": "2026-11-06",
     "image": {
-      "src": "images/agorism-page.png",
-      "caption": "agorist a3 symbol (meaning: agora, anarchy, action!)",
-      "author": "A3.JPG : Nihilo derivative work: Anarchist Ivanov ( talk ) This W3C-unspecified vector image was created with Inkscape .",
+      "src": "images/agorism-thematic.svg",
+      "caption": "Серо-чёрный флаг, используемый как символ агоризма.",
+      "author": "SolarStarSpire",
       "license": "Public domain",
-      "licenseUrl": "https://commons.wikimedia.org/wiki/File:A3vector.svg",
-      "source": "https://commons.wikimedia.org/wiki/File:A3vector.svg",
+      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Agorism_flag.svg",
       "changes": "Масштабирование и кадрирование для интерфейса.",
-      "verified": "2026-11-06"
+      "verified": "2026-11-06",
+      "representative": true
     }
   },
   {
@@ -4547,14 +4549,15 @@
     ],
     "checked": "2026-11-06",
     "image": {
-      "src": "images/egoist-anarchism.jpg",
-      "caption": "Anarchism and religion have historically had an uneasy relationship. Indeed, representatives of both sides have regularly insisted on the fundamental incompatibility of anarchist and religious ideas and practices. Yet, ever since the emergence of anarchism as an intellectual and political movement, a considerable number of religious anarchists have insisted…",
-      "author": "Various authors",
-      "license": "CC BY 4.0",
-      "licenseUrl": "https://creativecommons.org/licenses/by/4.0",
-      "source": "https://commons.wikimedia.org/wiki/File:Essays_in_Anarchism_and_Religion_Volume_01.pdf",
+      "src": "images/egoist-anarchism-thematic.svg",
+      "caption": "Неофициальный бирюзово-чёрный флаг анархо-эгоизма.",
+      "author": "Verivici31",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Flag_of_Anarcho-egoism.svg",
       "changes": "Масштабирование и кадрирование для интерфейса.",
-      "verified": "2026-11-06"
+      "verified": "2026-11-06",
+      "representative": true
     }
   },
   {
@@ -4919,16 +4922,15 @@
     ],
     "checked": "2026-11-06",
     "image": {
-      "src": "images/peter-kropotkin.jpg",
-      "caption": "Контекстная историческая иллюстрация семейства «anarchist». Она не является эмблемой направления «Зелёный анархизм» и используется до добавления отдельного проверенного изображения.",
-      "author": "Автор неизвестен",
-      "license": "Public domain",
-      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-      "source": "https://commons.wikimedia.org/wiki/File:Kropotkin_Portrait.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Kropotkin_Portrait.jpg/960px-Kropotkin_Portrait.jpg",
-      "changes": "Повторно использована как явно подписанная контекстная иллюстрация; масштабирование и кадрирование.",
+      "src": "images/green-anarchism-thematic.png",
+      "caption": "Зелёно-чёрный флаг, связанный с зелёным анархизмом и экоанархизмом.",
+      "author": "Vergänglichkeit",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Dark_Green_%26_Black_Flag.png",
+      "changes": "Масштабирование и кадрирование для интерфейса.",
       "verified": "2026-11-06",
-      "contextual": true
+      "representative": true
     }
   },
   {
@@ -4983,16 +4985,15 @@
     ],
     "checked": "2026-11-06",
     "image": {
-      "src": "images/peter-kropotkin.jpg",
-      "caption": "Контекстная историческая иллюстрация семейства «anarchist». Она не является эмблемой направления «Анархо-примитивизм» и используется до добавления отдельного проверенного изображения.",
-      "author": "Автор неизвестен",
-      "license": "Public domain",
-      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-      "source": "https://commons.wikimedia.org/wiki/File:Kropotkin_Portrait.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Kropotkin_Portrait.jpg/960px-Kropotkin_Portrait.jpg",
-      "changes": "Повторно использована как явно подписанная контекстная иллюстрация; масштабирование и кадрирование.",
+      "src": "images/anarcho-primitivism-thematic.png",
+      "caption": "Зелёно-чёрный тематический флаг, используемый для зелёного анархизма и анархо-примитивизма.",
+      "author": "Vergänglichkeit",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Dark_Green_%26_Black_Flag.png",
+      "changes": "Масштабирование и кадрирование для интерфейса.",
       "verified": "2026-11-06",
-      "contextual": true
+      "representative": true
     }
   },
   {
@@ -5111,16 +5112,15 @@
     ],
     "checked": "2026-11-06",
     "image": {
-      "src": "images/peter-kropotkin.jpg",
-      "caption": "Контекстная историческая иллюстрация семейства «anarchist». Она не является эмблемой направления «Анарха-феминизм» и используется до добавления отдельного проверенного изображения.",
-      "author": "Автор неизвестен",
+      "src": "images/anarcha-feminism-thematic.svg",
+      "caption": "Чёрно-фиолетовый флаг анарха-феминизма.",
+      "author": "Liftarn",
       "license": "Public domain",
       "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-      "source": "https://commons.wikimedia.org/wiki/File:Kropotkin_Portrait.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Kropotkin_Portrait.jpg/960px-Kropotkin_Portrait.jpg",
-      "changes": "Повторно использована как явно подписанная контекстная иллюстрация; масштабирование и кадрирование.",
+      "source": "https://commons.wikimedia.org/wiki/File:Anarchist_Feminism_flag_3.2_ratio.svg",
+      "changes": "Масштабирование и кадрирование для интерфейса.",
       "verified": "2026-11-06",
-      "contextual": true
+      "representative": true
     }
   },
   {
@@ -5175,16 +5175,15 @@
     ],
     "checked": "2026-11-06",
     "image": {
-      "src": "images/peter-kropotkin.jpg",
-      "caption": "Контекстная историческая иллюстрация семейства «anarchist». Она не является эмблемой направления «Квир-анархизм» и используется до добавления отдельного проверенного изображения.",
-      "author": "Автор неизвестен",
+      "src": "images/queer-anarchism-thematic.svg",
+      "caption": "Чёрно-розовый флаг квир-анархизма.",
+      "author": "Liftarn",
       "license": "Public domain",
       "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-      "source": "https://commons.wikimedia.org/wiki/File:Kropotkin_Portrait.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Kropotkin_Portrait.jpg/960px-Kropotkin_Portrait.jpg",
-      "changes": "Повторно использована как явно подписанная контекстная иллюстрация; масштабирование и кадрирование.",
+      "source": "https://commons.wikimedia.org/wiki/File:Queer_anarchism_flag.svg",
+      "changes": "Масштабирование и кадрирование для интерфейса.",
       "verified": "2026-11-06",
-      "contextual": true
+      "representative": true
     }
   },
   {
@@ -5623,16 +5622,15 @@
     ],
     "checked": "2026-11-06",
     "image": {
-      "src": "images/peter-kropotkin.jpg",
-      "caption": "Контекстная историческая иллюстрация семейства «anarchist». Она не является эмблемой направления «Христианский анархизм» и используется до добавления отдельного проверенного изображения.",
-      "author": "Автор неизвестен",
-      "license": "Public domain",
-      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-      "source": "https://commons.wikimedia.org/wiki/File:Kropotkin_Portrait.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Kropotkin_Portrait.jpg/960px-Kropotkin_Portrait.jpg",
-      "changes": "Повторно использована как явно подписанная контекстная иллюстрация; масштабирование и кадрирование.",
+      "src": "images/christian-anarchism-thematic.svg",
+      "caption": "Тематический флаг, соединяющий христианскую, социалистическую и анархистскую символику.",
+      "author": "Compwhizii",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Christian_Socialism_Anarchism.svg",
+      "changes": "Масштабирование и кадрирование для интерфейса.",
       "verified": "2026-11-06",
-      "contextual": true
+      "representative": true
     }
   },
   {
@@ -5751,16 +5749,15 @@
     ],
     "checked": "2026-11-06",
     "image": {
-      "src": "images/peter-kropotkin.jpg",
-      "caption": "Контекстная историческая иллюстрация семейства «anarchist». Она не является эмблемой направления «Криптоанархизм» и используется до добавления отдельного проверенного изображения.",
-      "author": "Автор неизвестен",
-      "license": "Public domain",
-      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-      "source": "https://commons.wikimedia.org/wiki/File:Kropotkin_Portrait.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d5/Kropotkin_Portrait.jpg/960px-Kropotkin_Portrait.jpg",
-      "changes": "Повторно использована как явно подписанная контекстная иллюстрация; масштабирование и кадрирование.",
+      "src": "images/crypto-anarchism-thematic.png",
+      "caption": "Криптоанархистский флаг: чёрно-латунное поле и пара ключей внутри символа анархии.",
+      "author": "Opensofias",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Crypto-Anarchist_flag_with_symbol.png",
+      "changes": "Масштабирование и кадрирование для интерфейса.",
       "verified": "2026-11-06",
-      "contextual": true
+      "representative": true
     }
   },
   {
@@ -17537,16 +17534,15 @@
     ],
     "checked": "2026-11-06",
     "image": {
-      "src": "images/gandhi-spinning.jpg",
-      "caption": "Контекстная историческая иллюстрация семейства «regional». Она не является эмблемой направления «Радикальный феминизм» и используется до добавления отдельного проверенного изображения.",
-      "author": "Автор неизвестен",
-      "license": "Public domain",
-      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-      "source": "https://commons.wikimedia.org/wiki/File:Gandhi_spinning_Noakhali_1946.jpg",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Gandhi_spinning_Noakhali_1946.jpg",
-      "changes": "Повторно использована как явно подписанная контекстная иллюстрация; масштабирование и кадрирование.",
+      "src": "images/radical-feminism-thematic.svg",
+      "caption": "Символ радикального феминизма: знак Венеры с поднятым кулаком.",
+      "author": "Alexei Yakovlev",
+      "license": "CC BY-SA 3.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Radical_feminism.svg",
+      "changes": "Масштабирование и кадрирование для интерфейса.",
       "verified": "2026-11-06",
-      "contextual": true
+      "representative": true
     }
   },
   {
@@ -17601,16 +17597,15 @@
     ],
     "checked": "2026-11-06",
     "image": {
-      "src": "images/jean-jaures.jpg",
-      "caption": "Контекстная историческая иллюстрация семейства «socialist». Она не является эмблемой направления «Социалистический феминизм» и используется до добавления отдельного проверенного изображения.",
-      "author": "Надар",
-      "license": "Public domain",
-      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-      "source": "https://commons.wikimedia.org/wiki/File:Jean_Jaur%C3%A8s,_1904,_par_Nadar.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Jean_Jaur%C3%A8s%2C_1904%2C_par_Nadar.jpg/960px-Jean_Jaur%C3%A8s%2C_1904%2C_par_Nadar.jpg",
-      "changes": "Повторно использована как явно подписанная контекстная иллюстрация; масштабирование и кадрирование.",
+      "src": "images/socialist-feminism-thematic.svg",
+      "caption": "Тематическая эмблема социалистического и марксистского феминизма.",
+      "author": "Aegesar",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Marxism_feminism.svg",
+      "changes": "Масштабирование и кадрирование для интерфейса.",
       "verified": "2026-11-06",
-      "contextual": true
+      "representative": true
     }
   },
   {
@@ -17665,16 +17660,15 @@
     ],
     "checked": "2026-11-06",
     "image": {
-      "src": "images/jean-jaures.jpg",
-      "caption": "Контекстная историческая иллюстрация семейства «socialist». Она не является эмблемой направления «Марксистский феминизм» и используется до добавления отдельного проверенного изображения.",
-      "author": "Надар",
-      "license": "Public domain",
-      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-      "source": "https://commons.wikimedia.org/wiki/File:Jean_Jaur%C3%A8s,_1904,_par_Nadar.jpg",
-      "url": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/13/Jean_Jaur%C3%A8s%2C_1904%2C_par_Nadar.jpg/960px-Jean_Jaur%C3%A8s%2C_1904%2C_par_Nadar.jpg",
-      "changes": "Повторно использована как явно подписанная контекстная иллюстрация; масштабирование и кадрирование.",
+      "src": "images/marxist-feminism-thematic.svg",
+      "caption": "Эмблема марксистского феминизма.",
+      "author": "Aegesar",
+      "license": "CC BY-SA 4.0",
+      "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Marxism_feminism.svg",
+      "changes": "Масштабирование и кадрирование для интерфейса.",
       "verified": "2026-11-06",
-      "contextual": true
+      "representative": true
     }
   },
   {
@@ -17729,16 +17723,15 @@
     ],
     "checked": "2026-11-06",
     "image": {
-      "src": "images/gandhi-spinning.jpg",
-      "caption": "Контекстная историческая иллюстрация семейства «regional». Она не является эмблемой направления «Чёрный феминизм» и используется до добавления отдельного проверенного изображения.",
-      "author": "Автор неизвестен",
-      "license": "Public domain",
-      "licenseUrl": "https://creativecommons.org/publicdomain/mark/1.0/",
-      "source": "https://commons.wikimedia.org/wiki/File:Gandhi_spinning_Noakhali_1946.jpg",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Gandhi_spinning_Noakhali_1946.jpg",
-      "changes": "Повторно использована как явно подписанная контекстная иллюстрация; масштабирование и кадрирование.",
+      "src": "images/black-feminism-thematic.svg",
+      "caption": "Символ чёрного феминизма со знаком Венеры в форме сердца и поднятым кулаком.",
+      "author": "Hammbh",
+      "license": "CC0 1.0",
+      "licenseUrl": "https://creativecommons.org/publicdomain/zero/1.0/",
+      "source": "https://commons.wikimedia.org/wiki/File:Black_Feminism_Symbol-with-heart.svg",
+      "changes": "Масштабирование и кадрирование для интерфейса.",
       "verified": "2026-11-06",
-      "contextual": true
+      "representative": true
     }
   },
   {
